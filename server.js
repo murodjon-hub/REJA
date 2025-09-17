@@ -15,15 +15,23 @@ app.set("view engine", "ejs");
 
 //4: Routing code
 
-app.get("/hello",function(req, res){
-    res.end(`<h1 style="background: yellow">HELLO WORLD by Michael</h1>`);
+// app.get("/hello",function(req, res){
+//     res.end(`<h1 style="background: yellow">HELLO WORLD by Michael</h1>`);
+// });
+// app.get("/gift",function(req, res){
+//     res.end(`<h1 style="background: yellow">Siz sovgalar bo'limidasiz</h1>`);
+// });
+app.post("/create-item", (req, res) =>{
+console.log(req.body);
+res.json({test:"success"})
 });
-app.get("/gift",function(req, res){
-    res.end(`<h1 style="background: yellow">Siz sovgalar bo'limidasiz</h1>`);
+
+app.get("/",function(req, res){
+res.render("harid");
 });
 
 const server = http.createServer(app);
-let PORT = 4001;
-server.listen(PORT, function(){
+let PORT = 1005;
+server.listen(PORT, function () {
     console.log(`The server is running successfilly on port: ${PORT} `);
 });
