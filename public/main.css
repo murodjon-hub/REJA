@@ -174,7 +174,8 @@ color: black;
   */
 /* ---------------- Frame Layout ---------------- */
 /* --- Global Styles --- */
-* {
+ 
+*{
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -236,8 +237,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 50px;
-    border-left: 1px solid #f0f0f6;
+    padding-top: 100px;
 }
 
 /* --- Profile Section (Left) --- */
@@ -299,6 +299,7 @@ body {
     margin-bottom: 5px;
     display: flex;
     justify-content: space-between;
+    font-size: 12px;
 }
 
 .left_2 .tag {
@@ -585,4 +586,24 @@ body {
 }
 .left_5{
   background-color: white;
+}
+.nav-icons {
+    margin-top: 100px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    
+}
+.right-icons .icon_1 {
+    position: relative;
+    text-decoration: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #f4ecd9;
+    padding: 6px;
+    box-shadow: 0 4px rgba(0, 0, 0, .25);
+    margin-top: 10px;
+    margin-right: 10px;
 }
