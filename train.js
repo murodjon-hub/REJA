@@ -1,4 +1,8 @@
-// Task A
+/*TASK A
+
+Harf sifatida kiritilgan birinchi parametr, 
+kiritilgan ikkinchi parametr tarkibida nechta ekanligini qaytaruvchi
+Funktsiya tuzing*/
 // function countLetter(letter, word) {
 //     return word.split(letter).length - 1;
 // }
