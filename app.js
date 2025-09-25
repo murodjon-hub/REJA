@@ -3,16 +3,16 @@ const express = require("express");
 const res = require("express/lib/response")
 const app = express();
 //MongoDB chaqirish
-const { db } = require("./server");
-const fs = require("fs");
-let user;
-fs.readFile("database/user.json", "utf8",(err,data) => {
-if(err){
-    console.log("ERROR:", err);
-} else {
-    user = JSON.parse(data);
-}
-});
+const db = require("./server").db();
+// const fs = require("fs");
+// let user;
+// fs.readFile("database/user.json", "utf8",(err,data) => {
+// if(err){
+//     console.log("ERROR:", err);
+// } else {
+//     user = JSON.parse(data);
+// }
+// });
 //1: Kirish code
 app.use(express.static("public"));
 app.use(express.json());
@@ -50,6 +50,6 @@ res.render("reja");
 app.get('/author',(req, res) => {
  res.render("author", {user:user});
 });
-
-module.exports = db;
+ 
+module.exports = app;
 
