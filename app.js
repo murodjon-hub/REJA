@@ -4,7 +4,7 @@ const res = require("express/lib/response")
 const app = express();
 //MongoDB chaqirish
 const db = require("./server").db();
-// const fs = require("fs");
+//const fs = require("fs");
 // let user;
 // fs.readFile("database/user.json", "utf8",(err,data) => {
 // if(err){
@@ -31,25 +31,33 @@ app.set("view engine", "ejs");
 //     res.end(`<h1 style="background: yellow">Siz sovgalar bo'limidasiz</h1>`);
 // });
 app.post("/create-item", (req, res) =>{
-console.log(req.body);
-res.end("succes")
-// res.json({test:"success"})
+console.log('user entered /create-item');
+const new_reja = req.body.reja;
+db.collection("plans").insertOne({reja: new_reja}, (err, data) => {
+    if (err) {
+        console.log(err);
+        res.end("something went wrong");
+    } else {
+        res.end("successfully added");
+    }
+});
 });
 app.get("/",function(req, res){
-    db.collection("plans").find().toArray(function(err,data){
+    console.log('user entered /');
+    db.collection("plans")
+    .find()
+    .toArray(function(err,data){
         if(err){
             console.log(err);
             res.end("something went wrong");
         }else {
-                console.log(data);
-                res.render("reja");
+                res.render("reja", {items: data});
             }
     }); 
-res.render("reja");
 });
-app.get('/author',(req, res) => {
- res.render("author", {user:user});
-});
+// app.get('/author',(req, res) => {
+//  res.render("author", {user:user});
+// });
  
 module.exports = app;
 

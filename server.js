@@ -2,7 +2,7 @@ const http = require("http");
 const mongodb = require("mongodb"); 
 let db;
 const connectionString =
-  "mongodb+srv://murodjonwoosong_db_user:pSBy0aIiJL5kSmYX@cluster0.x2lbima.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+  "mongodb+srv://murodjonwoosong_db_user:pSBy0aIiJL5kSmYX@cluster0.x2lbima.mongodb.net/Reja";
 mongodb.connect(
   connectionString,
   {
@@ -13,7 +13,7 @@ mongodb.connect(
     if (err) {
       console.log("ERROR on connection MongoDB");
     } else {
-      db = client.db(); // db obyektini saqlash
+      // db = client.db(); // db obyektini saqlash
       console.log("MongoDB connection succeed");
       module.exports = client;
       const app = require("./app");
