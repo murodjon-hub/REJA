@@ -3,32 +3,72 @@
 // Shunday class tuzing tuzing nomi Shop, va uni constructoriga 3 hil mahsulot pass bolsin, hamda classning 3ta methodi bolsin, biri qoldiq, biri sotish va biri qabul. Har bir method ishga tushgan vaqt ham log qilinsin.
 // MASALAN: const shop = new Shop(4, 5, 2); shop.qoldiq() return hozir 20:40da 4ta non, 5ta lagmon va 2ta cola mavjud! shop.sotish('non', 3) & shop.qabul('cola', 4) & shop.qoldiq() return hozir 20:50da 1ta non, 5ta lagmon va 6ta cola mavjud!
 
-class NewShop {
-  constructor(product1, product2, product3) {
-    this.product1 = product1;
-    this.product2 = product2;
-    this.product3 = product3;
+class Shop {
+  constructor(non, lagmon, cola) {
+    this.products = {
+      non,
+      lagmon,
+      cola,
+    };
+  }
+
+  getTime() {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, "0");
+    const minutes = String(now.getMinutes()).padStart(2, "0");
+    return `${hours}:${minutes}`;
+  }
+
+  qoldiq() {
+    const message = `Hozir ${this.getTime()} da ${this.products.non}ta non, ${this.products.lagmon}ta lagmon va ${this.products.cola}ta cola mavjud!`;
+    console.log(message);
+    return message;
+  }
+
+  sotish(product, amount) {
+    if (!(product in this.products)) {
+      console.log(`${product} do‘konda mavjud emas!`);
+      return;
+    }
+    if (this.products[product] < amount) {
+      console.log(
+        `Hozircha ${amount}ta ${product} sotib bo‘lmaydi, faqat ${this.products[product]}ta bor!`
+      );
+      return;
+    }
+    this.products[product] -= amount;
+    console.log(`${this.getTime()} da ${amount}ta ${product} sotildi!`);
+  }
+
+  qabul(product, amount) {
+    if (!(product in this.products)) {
+      console.log(`${product} yangi mahsulot sifatida qo‘shildi!`);
+      this.products[product] = 0;
+    }
+    this.products[product] += amount;
+    console.log(`${this.getTime()} da ${amount}ta ${product} qabul qilindi!`);
   }
 }
-
-const shop = NewShop ("mouse", "keyboard", "monitor");
-shop.qoldiq(){
-  
-}
+const shop = new Shop(4, 5, 2);
+shop.qoldiq();
+shop.sotish("non", 2);
+shop.qabul("cola", 5);
+shop.qabul("shakar", 10);
+shop.qoldiq();
 
 
 // TASK B: 
 
 // Shunday function tuzing, u 1ta string parametrga ega bolsin, hamda osha stringda qatnashgan raqamlarni sonini bizga return qilsin.
 // MASALAN countDigits("ad2a54y79wet0sfgb9") 7ni return qiladi.
-function countDigits(str) {
-  let count = 0;
-  for (let i = 0; i < str.length; i++) {
-    const code = str.charCodeAt(i);
-    if (code >= 48 && code <= 57) count++; // '0'..'9'
-  }
-  return count;
-}
+// function countDigits(str) {
+//   let count = 0;
+//   for (let i = 0; i < str.length; i++) {
+//     const code = str.charCodeAt(i);
+//     if (code >= 48 && code <= 57) count++; // '0'..'9'
+//   }
+//   return count;
+// }
 
 
 /*TASK A
@@ -41,39 +81,39 @@ Funktsiya tuzing*/
 // }
 // console.log(countLetter("e", "fullstackdeveloper"));
 
-console.log("Jack Ma maslahatlari");
+// console.log("Jack Ma maslahatlari");
 
-const list = [
-  "yaxshi talaba boling",                 // 0–20
-  "togri boshliq tanlang va koproq hato qiling", // 20–30
-  "uzingizga ishlashingizni boshlang",    // 30–40
-  "siz kuchli bolgan narsalarni qiling",  // 40–50
-  "yoshlarga investitsiya qiling",        // 50–60
-  "endi dam oling, foydasi yoq endi"      // 60+
-];
-// CALL BACK
-function  maslahatBering(a, callback) {
-    if(typeof a !== 'number') callback("insert number",null);
-    else if(a <= 20) callback(null, list[0]);
-    else if(a > 20 && a <= 30) callback(null, list[1]);
-    else if(a > 30 && a <= 40) callback(null, list[2]);
-    else if(a > 40 && a <= 50) callback(null, list[3]);
-    else if(a > 50 && a <= 60) callback(null, list[4]);
-    else {
-        setInterval(function(){
-        callback(null, list[5]);
-        },5000);
-    }
+// const list = [
+//   "yaxshi talaba boling",                 // 0–20
+//   "togri boshliq tanlang va koproq hato qiling", // 20–30
+//   "uzingizga ishlashingizni boshlang",    // 30–40
+//   "siz kuchli bolgan narsalarni qiling",  // 40–50
+//   "yoshlarga investitsiya qiling",        // 50–60
+//   "endi dam oling, foydasi yoq endi"      // 60+
+// ];
+// // CALL BACK
+// function  maslahatBering(a, callback) {
+//     if(typeof a !== 'number') callback("insert number",null);
+//     else if(a <= 20) callback(null, list[0]);
+//     else if(a > 20 && a <= 30) callback(null, list[1]);
+//     else if(a > 30 && a <= 40) callback(null, list[2]);
+//     else if(a > 40 && a <= 50) callback(null, list[3]);
+//     else if(a > 50 && a <= 60) callback(null, list[4]);
+//     else {
+//         setInterval(function(){
+//         callback(null, list[5]);
+//         },5000);
+//     }
 
-}
-console.log('passed here 0');
-maslahatBering(65, (err,data) =>{
-    if(err) console.log('ERROR', err);
-    else{
-        console.log('javob', data);
-    }
-});
-console.log('passed here 1');
+// }
+// console.log('passed here 0');
+// maslahatBering(65, (err,data) =>{
+//     if(err) console.log('ERROR', err);
+//     else{
+//         console.log('javob', data);
+//     }
+// });
+// console.log('passed here 1');
 
 // ASYNC FUNCTION
 
