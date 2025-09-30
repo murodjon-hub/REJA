@@ -1,60 +1,76 @@
-// MITASK-C 
+// TASK D : 
 
-// Shunday class tuzing tuzing nomi Shop, va uni constructoriga 3 hil mahsulot pass bolsin, hamda classning 3ta methodi bolsin, biri qoldiq, biri sotish va biri qabul. Har bir method ishga tushgan vaqt ham log qilinsin.
-// MASALAN: const shop = new Shop(4, 5, 2); shop.qoldiq() return hozir 20:40da 4ta non, 5ta lagmon va 2ta cola mavjud! shop.sotish('non', 3) & shop.qabul('cola', 4) & shop.qoldiq() return hozir 20:50da 1ta non, 5ta lagmon va 6ta cola mavjud!
+// Shunday function tuzing, u 2ta string parametr ega bolsin, hamda agar har ikkala string bir hil harflardan iborat bolsa true aks holda false qaytarsin
 
-class Shop {
-  constructor(non, lagmon, cola) {
-    this.products = {
-      non,
-      lagmon,
-      cola,
-    };
-  }
+// MASALAN checkContent("mitgroup", "gmtiprou") return qiladi true;
 
-  getTime() {
-    const now = new Date();
-    const hours = String(now.getHours()).padStart(2, "0");
-    const minutes = String(now.getMinutes()).padStart(2, "0");
-    return `${hours}:${minutes}`;
-  }
+function checkContent(a,b) {
+if (a.length !== b.length) return false;
+  const s1 = a.split("").sort().join("");
+  const s2 = b.split("").sort().join("");
 
-  qoldiq() {
-    const message = `Hozir ${this.getTime()} da ${this.products.non}ta non, ${this.products.lagmon}ta lagmon va ${this.products.cola}ta cola mavjud!`;
-    console.log(message);
-    return message;
-  }
-
-  sotish(product, amount) {
-    if (!(product in this.products)) {
-      console.log(`${product} do‘konda mavjud emas!`);
-      return;
-    }
-    if (this.products[product] < amount) {
-      console.log(
-        `Hozircha ${amount}ta ${product} sotib bo‘lmaydi, faqat ${this.products[product]}ta bor!`
-      );
-      return;
-    }
-    this.products[product] -= amount;
-    console.log(`${this.getTime()} da ${amount}ta ${product} sotildi!`);
-  }
-
-  qabul(product, amount) {
-    if (!(product in this.products)) {
-      console.log(`${product} yangi mahsulot sifatida qo‘shildi!`);
-      this.products[product] = 0;
-    }
-    this.products[product] += amount;
-    console.log(`${this.getTime()} da ${amount}ta ${product} qabul qilindi!`);
-  }
+  return s1 === s2;
 }
-const shop = new Shop(4, 5, 2);
-shop.qoldiq();
-shop.sotish("non", 2);
-shop.qabul("cola", 5);
-shop.qabul("shakar", 10);
-shop.qoldiq();
+console.log(checkContent("apelsin", "niselap")); 
+
+
+// // MITASK-C 
+
+// // Shunday class tuzing tuzing nomi Shop, va uni constructoriga 3 hil mahsulot pass bolsin, hamda classning 3ta methodi bolsin, biri qoldiq, biri sotish va biri qabul. Har bir method ishga tushgan vaqt ham log qilinsin.
+// // MASALAN: const shop = new Shop(4, 5, 2); shop.qoldiq() return hozir 20:40da 4ta non, 5ta lagmon va 2ta cola mavjud! shop.sotish('non', 3) & shop.qabul('cola', 4) & shop.qoldiq() return hozir 20:50da 1ta non, 5ta lagmon va 6ta cola mavjud!
+
+// class Shop {
+//   constructor(non, lagmon, cola) {
+//     this.products = {
+//       non,
+//       lagmon,
+//       cola,
+//     };
+//   }
+
+//   getTime() {
+//     const now = new Date();
+//     const hours = String(now.getHours()).padStart(2, "0");
+//     const minutes = String(now.getMinutes()).padStart(2, "0");
+//     return `${hours}:${minutes}`;
+//   }
+
+//   qoldiq() {
+//     const message = `Hozir ${this.getTime()} da ${this.products.non}ta non, ${this.products.lagmon}ta lagmon va ${this.products.cola}ta cola mavjud!`;
+//     console.log(message);
+//     return message;
+//   }
+
+//   sotish(product, amount) {
+//     if (!(product in this.products)) {
+//       console.log(`${product} do‘konda mavjud emas!`);
+//       return;
+//     }
+//     if (this.products[product] < amount) {
+//       console.log(
+//         `Hozircha ${amount}ta ${product} sotib bo‘lmaydi, faqat ${this.products[product]}ta bor!`
+//       );
+//       return;
+//     }
+//     this.products[product] -= amount;
+//     console.log(`${this.getTime()} da ${amount}ta ${product} sotildi!`);
+//   }
+
+//   qabul(product, amount) {
+//     if (!(product in this.products)) {
+//       console.log(`${product} yangi mahsulot sifatida qo‘shildi!`);
+//       this.products[product] = 0;
+//     }
+//     this.products[product] += amount;
+//     console.log(`${this.getTime()} da ${amount}ta ${product} qabul qilindi!`);
+//   }
+// }
+// const shop = new Shop(4, 5, 2);
+// shop.qoldiq();
+// shop.sotish("non", 2);
+// shop.qabul("cola", 5);
+// shop.qabul("shakar", 10);
+// shop.qoldiq();
 
 
 // TASK B: 

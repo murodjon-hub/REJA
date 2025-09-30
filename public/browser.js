@@ -1,3 +1,5 @@
+// const { response } = require("../app");
+
 console.log("FrontEnd JS ishga tushdi");
 
 function itemTemplate(item) {
@@ -46,7 +48,32 @@ if (e.target.classList.contains("delete-me")){
     }
 }
 //edit operations
-if (e.target.classList.contains("edit-me")){
-    console.log("Iltimos qayta harakat qilib ko'ring");
+if (e.target.classList.contains("edit-me")) {
+    let userInput = prompt(
+        "o'zgartirish kiriting", 
+        e.target.parentElement.parentElement.querySelector(".item-text").innerHTML
+    );
+    if (userInput) {
+       axios
+       .post("/edit-item", {
+        id: e.target.getAttribute("data-id"),
+        new_input: userInput,
+       })
+       .then(response =>{
+       console.log(response.data);
+       e.target.parentElement.parentElement.querySelector(
+        ".item-text")
+       .innerHTML=userInput;
+       })
+       .catch(err=> {
+       console.log("Iltimos qayta harakat qilib ko'ring");
+       });
+    }
 }
+});
+document.getElementById("clean-all").addEventListener("click", function(){
+ axios.post("/delete-all", {delete_all: true}).then((response) => {
+    alert(response.data.state);
+    document.location.reload();
+ });
 });
